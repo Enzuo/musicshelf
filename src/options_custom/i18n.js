@@ -23,9 +23,9 @@ this.i18n = {
         "en": "Login",
         "de": "Anmeldung"
     },
-    "username": {
-        "en": "Username:",
-        "de": "Benutzername:"
+    "gsheet": {
+        "en": "Gsheet:",
+        "de": "gsheet:"
     },
     "password": {
         "en": "Password:",
