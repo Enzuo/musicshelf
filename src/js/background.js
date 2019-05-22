@@ -16,6 +16,7 @@ chrome.extension.onMessage.addListener(
 
   	if(request.type === 'saveMusic'){
       saveMusic(request.payload);
+      return sendResponse('ok')
     }
 
     if(request.type === 'getMusic'){
@@ -29,7 +30,7 @@ chrome.extension.onMessage.addListener(
 
 
 
-function saveMusic(music){
+export function saveMusic (music){
   console.log('saveMusic');
   if(!musics){
     musics = [];
@@ -45,5 +46,3 @@ function saveMusic(music){
 function getAllMusics(){
   return musics;
 }
-
-export default saveMusic;

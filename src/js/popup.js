@@ -53,8 +53,16 @@ function displayMusic(musicName){
 
 function saveMusic(music){
   if(music){
-    var bg = chrome.extension.getBackgroundPage();
-    console.log('background page ',bg)
-    bg.saveMusic(music)
+    // chrome.runtime.getBackgroundPage(function(bg){
+    //   console.log('background page ',bg)
+    //   bg.saveMusic(music)
+    // });
+
+    chrome.runtime.sendMessage(undefined, {
+      type: 'saveMusic', 
+      payload: music
+    }, function(response){
+      console.log('popup got response to saveMusic', response)
+    })
   }
 }
