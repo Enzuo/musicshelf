@@ -1,11 +1,12 @@
-var webpack = require("webpack"),
-    path = require("path"),
-    fileSystem = require("fs"),
-    env = require("./utils/env"),
-    CleanWebpackPlugin = require("clean-webpack-plugin"),
-    CopyWebpackPlugin = require("copy-webpack-plugin"),
-    HtmlWebpackPlugin = require("html-webpack-plugin"),
-    WriteFilePlugin = require("write-file-webpack-plugin");
+var webpack = require("webpack");
+var path = require("path");
+var fileSystem = require("fs");
+var env = require("./utils/env");
+var CleanWebpackPlugin = require("clean-webpack-plugin");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var WriteFilePlugin = require("write-file-webpack-plugin");
+var VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 // load the secrets
 var alias = {};
@@ -46,7 +47,12 @@ var options = {
         test: /\.html$/,
         loader: "html-loader",
         exclude: /node_modules/
-      }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        exclude: /node_modules/
+      },
     ]
   },
   resolve: {
@@ -83,7 +89,8 @@ var options = {
       filename: "background.html",
       chunks: ["background"]
     }),
-    new WriteFilePlugin()
+    new WriteFilePlugin(),
+    new VueLoaderPlugin(),
   ]
 };
 

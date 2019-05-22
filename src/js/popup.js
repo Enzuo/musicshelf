@@ -1,5 +1,12 @@
 import "../css/popup.css";
 import hello from "./popup/example";
+import Vue from 'vue'
+import App from './popup/App.vue'
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
 
 hello();
 
