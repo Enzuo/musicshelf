@@ -3,6 +3,9 @@
     <img src="icon128.png">
     Video title : {{currentTitle}}
     Music : {{currentMusic}}
+    <div>
+      All musics : {{musics}}
+    </div>
   </div>
 </template>
 
@@ -16,6 +19,7 @@ export default {
     return {
       currentTitle : null,
       currentMusic : null,
+      musics : null,
     }
   },
 
@@ -24,7 +28,11 @@ export default {
       const music = extractMusicFromVideoTitle(musicTitle);
       this.currentTitle = musicTitle;
       this.currentMusic = music;
+      this.saveMusic(music);
     });
+    this.getAllMusic((musics) => {
+      this.musics = musics;
+    })
   },
 
   methods : {
@@ -35,13 +43,28 @@ export default {
           console.log(response);
           if(response){
             callback(response);
-            // displayMusic(response);
-            // var music = extractMusicFromVideoTitle(response);
-            // saveMusic(music);
           }
         });
       });
     },
+    saveMusic: function (music){
+      if(music){
+        chrome.runtime.sendMessage(undefined, {
+          type: 'saveMusic', 
+          payload: music,
+        }, function(response){
+          console.log('popup got response to saveMusic', response)
+        })
+      }
+    },
+    getAllMusic: function(callback){
+      chrome.runtime.sendMessage(undefined, {
+        type: 'getAllMusic', 
+      }, function(response){
+        console.log('got all music', response)
+        return callback(response)
+      })
+    }
   }
 }
 </script>

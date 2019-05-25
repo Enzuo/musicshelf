@@ -23,7 +23,7 @@ chrome.extension.onMessage.addListener(
     }
 
     if(request.type === 'getAllMusic'){
-      sendResponse(getAllMusic());
+      sendResponse(getAllMusics());
     }
   }
 );
