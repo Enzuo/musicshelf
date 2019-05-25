@@ -8,19 +8,19 @@ new Vue({
   render: h => h(App)
 });
 
-hello();
+// hello();
 
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  console.log('get active tab', tabs)
-  chrome.tabs.sendMessage(tabs[0].id, 'extractVideoTitle', function(response) {
-    console.log(response);
-    if(response){
-      displayMusic(response);
-      var music = extractMusicFromVideoTitle(response);
-      saveMusic(music);
-    }
-  });
-});
+// chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//   console.log('get active tab', tabs)
+//   chrome.tabs.sendMessage(tabs[0].id, 'extractVideoTitle', function(response) {
+//     console.log(response);
+//     if(response){
+//       displayMusic(response);
+//       var music = extractMusicFromVideoTitle(response);
+//       saveMusic(music);
+//     }
+//   });
+// });
 
 function extractMusicFromVideoTitle(vTitle){
   if(!vTitle){
