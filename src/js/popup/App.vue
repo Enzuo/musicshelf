@@ -50,7 +50,7 @@ export default {
     saveMusic: function (music){
       if(music){
         chrome.runtime.sendMessage(undefined, {
-          type: 'saveMusic', 
+          type: 'saveMusic',
           payload: music,
         }, function(response){
           console.log('popup got response to saveMusic', response)
@@ -59,7 +59,7 @@ export default {
     },
     getAllMusic: function(callback){
       chrome.runtime.sendMessage(undefined, {
-        type: 'getAllMusic', 
+        type: 'getAllMusic',
       }, function(response){
         console.log('got all music', response)
         return callback(response)
