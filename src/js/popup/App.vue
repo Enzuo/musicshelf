@@ -1,10 +1,18 @@
 <template>
   <div id="app">
     <img src="icon128.png">
-    Video title : {{currentTitle}}
-    Music : {{currentMusic}}
+    Video title : {{ currentTitle }}
+    Music : {{ currentMusic }}
     <div>
-      All musics : {{musics}}
+      All musics
+      <ul>
+        <li
+          v-for="(music, index) in musics"
+          :key="index"
+        >
+          {{ music }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
