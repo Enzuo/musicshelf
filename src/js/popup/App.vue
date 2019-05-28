@@ -4,7 +4,7 @@
     Video title : {{ currentTitle }}
     Music : {{ currentMusic }}
     <div>
-      All musics
+      All musics {{ musics }}
       <ul>
         <li
           v-for="(music, index) in musics"
