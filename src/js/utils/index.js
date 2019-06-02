@@ -14,6 +14,12 @@ export function extractMusicFromVideoTitle(vTitle){
   // FAUVE ≠ LES HAUTES LUMIÈRES
   // Ben l'Oncle Soul « I've got you under my skin » (Frank Sinatra cover)
   // Redbone Childish Gambino (Lyrics)
+  // The Connells - '74-'75
+  // The Weeknd - I Feel It Coming ft. Daft Punk
+  // LSD - Thunderclouds (Official Video) ft. Sia, Diplo, Labrinth
+  // Lady Gaga, Bradley Cooper - Shallow (A Star Is Born)
+  // Mark Ronson, Lykke Li - Late Night Feelings (Audio) ft. Lykke Li
+  // Parcels ~ Overnight
   var vTitleArr = vTitle.split(/-|\(/);
 
   if(!vTitleArr){
@@ -24,7 +30,7 @@ export function extractMusicFromVideoTitle(vTitle){
   if(vTitleArr.length === 1){
     title = vTitleArr[0]
   }
-  var title = vTitleArr[1];
+  title = vTitleArr[1];
   var author = vTitleArr[0];
 
   return {author : author, title : title, feats : '', favorite : false, ktv : false}
