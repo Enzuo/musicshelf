@@ -3,6 +3,26 @@
     <img src="icon128.png">
     Video title : {{ currentTitle }}
     Music : {{ currentMusic }}
+    <md-button
+      class="md-icon-button"
+      :class="isFavorite ? 'md-primary' : null"
+      @click="favorite"
+    >
+      <md-icon>star</md-icon>
+    </md-button>
+    <md-button
+      class="md-icon-button"
+      :class="isKtv ? 'md-primary' : null"
+      @click="singable"
+    >
+      <md-icon>mic</md-icon>
+    </md-button>
+    <md-button
+      class="md-icon-button"
+      @click="remove"
+    >
+      <md-icon>undo</md-icon>
+    </md-button>
     <div>
       All musics {{ musics }}
       <ul>
@@ -20,14 +40,17 @@
 <script>
 import { extractMusicFromVideoTitle } from '../utils';
 
+
 export default {
   name: 'App',
-
+  // components: {'md-button' : MdButton},
   data : function () {
     return {
       currentTitle : null,
       currentMusic : null,
       musics : null,
+      isFavorite : false,
+      isKtv : false,
     }
   },
 
@@ -72,6 +95,15 @@ export default {
         console.log('got all music', response)
         return callback(response)
       })
+    },
+    favorite: function(){
+      this.isFavorite = !this.isFavorite;
+    },
+    singable: function(){
+      this.isKtv = !this.isKtv;
+    },
+    remove: function(){
+
     }
   }
 }
