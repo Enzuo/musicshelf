@@ -4,22 +4,23 @@ export function extractMusicFromVideoTitle(vTitle){
   }
 
   // Perfect Run
+  // Parcels ~ Overnight
   // Crooked Colours - Perfect run
   // Crooked Colours - Perfect run (official video)
   // Perfect run (official video)
-  // Kendrick Lamar, SZA - All The Stars
   // OrelSan - Paradis [CLIP OFFICIEL]
   // Childish Gambino-Heartbeat(Lyrics)
-  // Therapie TAXI ft. Roméo Elvis - Hit Sale (Clip Officiel) (1/3)
-  // FAUVE ≠ LES HAUTES LUMIÈRES
   // Ben l'Oncle Soul « I've got you under my skin » (Frank Sinatra cover)
-  // Redbone Childish Gambino (Lyrics)
+  // FAUVE ≠ LES HAUTES LUMIÈRES
   // The Connells - '74-'75
+  // Redbone Childish Gambino (Lyrics)
   // The Weeknd - I Feel It Coming ft. Daft Punk
+  // Kanye West - Flashing Lights ft. Dwele
+  // Mark Ronson, Lykke Li - Late Night Feelings (Audio) ft. Lykke Li
   // LSD - Thunderclouds (Official Video) ft. Sia, Diplo, Labrinth
   // Lady Gaga, Bradley Cooper - Shallow (A Star Is Born)
-  // Mark Ronson, Lykke Li - Late Night Feelings (Audio) ft. Lykke Li
-  // Parcels ~ Overnight
+  // Kendrick Lamar, SZA - All The Stars
+  // Therapie TAXI ft. Roméo Elvis - Hit Sale (Clip Officiel) (1/3)
   var vTitleArr = vTitle.split(/-|\(/);
 
   if(!vTitleArr){
