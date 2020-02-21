@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <img src="icon128.png">
-    Video title : {{ currentTitle }}
+    <input v-model="currentTitle">
     Music : {{ currentMusic }}
+    isSave : {{ isSaved }}
     <md-button
       class="md-icon-button"
       :class="isFavorite ? 'md-primary' : null"
@@ -51,7 +52,20 @@ export default {
       musics : null,
       isFavorite : false,
       isKtv : false,
+      isSaved : false,
     }
+  },
+
+  watch : {
+    isFavorite : function (){
+      this.isSaved = false;
+    },
+    isKtv : function () {
+      this.isSaved = false;
+    },
+    currentTitle : function () {
+      this.isSaved = false;
+    },
   },
 
   created : function () {
@@ -59,7 +73,10 @@ export default {
       const music = extractMusicFromVideoTitle(musicTitle);
       this.currentTitle = musicTitle;
       this.currentMusic = music;
-      this.saveMusic(music);
+      // this.saveMusic(music);
+      this.getContentMusicId((musicId) => {
+        console.log('musicid', musicId)
+      });
     });
     this.getAllMusic((musics) => {
       this.musics = musics;
@@ -68,15 +85,10 @@ export default {
 
   methods : {
     getContentMusicTitle : function (callback) {
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        console.log('get active tab', tabs)
-        chrome.tabs.sendMessage(tabs[0].id, 'extractVideoTitle', function(response) {
-          console.log(response);
-          if(response){
-            callback(response);
-          }
-        });
-      });
+      talkToContentScript('extractVideoTitle', callback);
+    },
+    getContentMusicId : function (callback){
+      talkToContentScript('extractVideoId', callback);
     },
     saveMusic: function (music){
       if(music){
@@ -107,6 +119,19 @@ export default {
     }
   }
 }
+
+function talkToContentScript(message, callback){
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    console.log('get active tab', tabs)
+    chrome.tabs.sendMessage(tabs[0].id, message, function(response) {
+      console.log(response);
+      if(response){
+        callback(response);
+      }
+    });
+  });
+}
+
 </script>
 
 <style>

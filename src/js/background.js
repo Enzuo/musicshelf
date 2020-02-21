@@ -4,8 +4,10 @@ import '../img/icon48.png'
 import '../img/icon128.png'
 
 import PouchDB from 'pouchdb';
+import simplifyString from 'simplify-string';
 
-var db = new PouchDB('musicshelf');
+
+var musicShelfDatabase = new PouchDB('musicshelf');
 
 // PouchDB.debug.enable('*');
 
@@ -16,7 +18,7 @@ var db = new PouchDB('musicshelf');
 //   console.log('Value currently is ' + JSON.stringify(result, null, 2));
 //   musics = result.musics;
 // });
-db.allDocs({include_docs: true}, function(info){
+musicShelfDatabase.allDocs({include_docs: true}, function(info){
   console.log('allDocs', info);
 });
 
@@ -45,7 +47,10 @@ chrome.extension.onMessage.addListener(
   }
 );
 
+export function getMusic (music) {
 
+
+}
 
 export function saveMusic (music){
   // console.log('saveMusic');
@@ -58,16 +63,18 @@ export function saveMusic (music){
   // chrome.storage.sync.set({musics: musics}, function() {
   //   console.log('Music saved ', music);
   // });
-
-  db.post(music);
+  if(!music.id){
+    music.id = simplifyString(music.author) + '_' + simplifyString(music.title);
+  }
+  musicShelfDatabase.put(music);
 }
 
 function getAllMusics(callback){
-  db.info().then(function (info) {
+  musicShelfDatabase.info().then(function (info) {
     console.log(info);
     // callback(info);
   })
-  db.allDocs({include_docs: true}, function(info){
+  musicShelfDatabase.allDocs({include_docs: true}, function(info){
     console.log('callback info', info);
     // callback(info);
   }).then(function(infos){

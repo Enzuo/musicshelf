@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "pouchdb": "^7.0.0",
+    "simplify-string": "^1.0.3",
     "vue": "^2.6.10",
     "vue-material": "^1.0.0-beta-11"
   }
