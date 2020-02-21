@@ -1,6 +1,8 @@
 # Music shelf
 
 ## Concept
+
+Google chrome extension
 Store a list of your favorites music as you discover them on youtube
 
 ## Install
